@@ -1,0 +1,36 @@
+train_dataloader:
+  type: DataLoader
+  dataset:
+    type: MPEblinkV2Dataset
+    ann_file: /data/data4/zengwenzheng/data/dataset_building/HUST_LEBW/annotations/train_frame_level_re_anno_2025.json
+    img_fold: /data/data4/zengwenzheng/data/dataset_building/HUST_LEBW/HUST_LEBW_train_rawframes/
+    stride: 5
+    infer_length: 10
+    clip_length: 10
+    frame_interval: 1
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  drop_last: True
+  collate_fn:
+    type: BatchImageCollateFuncion
+    
+  total_batch_size: 8 # 4 * 4
+  num_workers: 4
+
+
+val_dataloader:
+  type: DataLoader
+  dataset:
+    type: MPEblinkV2Dataset
+    ann_file: /data/data4/zengwenzheng/data/dataset_building/mpeblink_cvpr2023/annotations/val.json
+    img_fold: /data/data4/zengwenzheng/data/dataset_building/mpeblink_cvpr2023/val_rawframes/
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  num_workers: 4
+  drop_last: True
+  collate_fn:
+    type: BatchImageCollateFuncion

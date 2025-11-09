@@ -1,0 +1,82 @@
+task: detection
+
+model: RTDETR
+criterion: RTDETRCriterionv2
+postprocessor: RTDETRPostProcessor
+
+
+use_focal_loss: True
+eval_spatial_size: [360, 640] # h w
+
+RTDETR: 
+  backbone: PResNet
+  encoder: HybridEncoder
+  decoder: RTDETRTransformerv2
+  
+  
+PResNet:
+  depth: 50
+  variant: d
+  return_idx: [1, 2, 3]
+  freeze_at: 4
+  num_stages: 4
+  freeze_norm: True
+  pretrained: True 
+
+
+HybridEncoder:
+  in_channels: [512, 1024, 2048]
+  feat_strides: [8, 16, 32]
+  # intra
+  frozen: True
+  hidden_dim: 256
+  use_encoder_idx: [2]
+  num_encoder_layers: 1
+  nhead: 8
+  dim_feedforward: 1024
+  dropout: 0.
+  enc_act: 'gelu'
+  
+  # cross
+  expansion: 1.0
+  depth_mult: 1
+  act: 'silu'
+
+
+RTDETRTransformerv2:
+  num_classes: 1
+  feat_channels: [256, 256, 256]
+  feat_strides: [8, 16, 32]
+  hidden_dim: 256
+  num_levels: 3
+
+  num_layers: 6
+  num_queries: 100
+  learn_query_content: True
+  num_denoising: 0
+  label_noise_ratio: 0.5
+  box_noise_scale: 1.0 # 1.0 0.4
+  track: True
+  eval_idx: -1
+  pred_blink: True
+  # NEW
+  num_points: [4, 4, 4] # [3,3,3] [2,2,2]
+  cross_attn_method: default # default, discrete
+  query_select_method: default # default, agnostic 
+
+
+RTDETRPostProcessor:
+  num_top_queries: 100
+
+
+RTDETRCriterionv2:
+  weight_dict: {loss_vfl: 1, loss_bbox_head: 5, loss_giou_head: 2,loss_bbox_eye: 5, loss_giou_eye: 2, loss_blinks: 1}
+  losses: ['vfl', 'boxes', ]
+  alpha: 0.75
+  gamma: 2.0
+
+  matcher:
+    type: HungarianMatcher
+    weight_dict: {cost_class: 2, cost_bbox: 5, cost_giou: 2}
+    alpha: 0.25
+    gamma: 2.0

@@ -1,0 +1,13 @@
+__include__: [
+  '../dataset/mpeblink_len=30_v2.yml',
+  '../runtime.yml',
+  './include/dataloader_len=30.yml',
+  './include/optimizer.yml',
+  './include/rtdetrv2_r50vd_coarse_train.yml',
+]
+
+output_dir: ./output/rtdetrv2_r50vd_6x_coco_len=30_mpeblinkv2
+
+last_epoch: 0
+
+epoches: 1

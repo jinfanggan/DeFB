@@ -1,0 +1,37 @@
+
+train_dataloader:
+  type: DataLoader
+  dataset:
+    type: MPEblinkV2Dataset
+    ann_file: /data/data4/zengwenzheng/data/dataset_building/mpeblink2_1/annotations/train.json
+    img_fold: /data/data4/zengwenzheng/data/dataset_building/mpeblink2_1/train_rawframes/
+    stride: 48
+    infer_length: 42
+    clip_length: 42
+    frame_interval: 2
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  drop_last: True
+  collate_fn:
+    type: BatchImageCollateFuncion
+    
+  total_batch_size: 8 # 4 * 4
+  num_workers: 4
+
+
+val_dataloader:
+  type: DataLoader
+  dataset:
+    type: MPEblinkV2Dataset
+    ann_file: /data/data4/zengwenzheng/data/dataset_building/mpeblink2_1/annotations/val.json
+    img_fold: /data/data4/zengwenzheng/data/dataset_building/mpeblink2_1/val_rawframes/
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  num_workers: 4
+  drop_last: True
+  collate_fn:
+    type: BatchImageCollateFuncion

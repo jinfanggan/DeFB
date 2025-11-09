@@ -1,0 +1,13 @@
+__include__: [
+  '../dataset/mpeblink_len=10_v1.yml',
+  '../runtime.yml',
+  './include/dataloader_len=10.yml',
+  './include/optimizer.yml',
+  './include/rtdetrv2_r50vd_abla_attention.yml',
+]
+
+output_dir: ./output/detrs-blink_len=10_mpeblinkv1_abla_attention
+
+last_epoch: 0
+
+epoches: 2

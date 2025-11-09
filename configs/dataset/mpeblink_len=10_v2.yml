@@ -1,0 +1,37 @@
+
+train_dataloader:
+  type: DataLoader
+  dataset:
+    type: MPEblinkV2Dataset
+    ann_file: /data/data1/ganjinfang/mpeblink2_1/annotations/train.json
+    img_fold: /data/data1/ganjinfang/mpeblink2_1/train_rawframes/
+    stride: 9
+    infer_length: 11
+    clip_length: 11
+    frame_interval: 8
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  drop_last: True
+  collate_fn:
+    type: BatchImageCollateFuncion
+    
+  total_batch_size: 8 # 4 * 4
+  num_workers: 4
+
+
+val_dataloader:
+  type: DataLoader
+  dataset:
+    type: MPEblinkV2Dataset
+    ann_file: /data/data1/ganjinfang/mpeblink2_1/annotations/val.json
+    img_fold: /data/data1/ganjinfang/mpeblink2_1/val_rawframes/
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  num_workers: 4
+  drop_last: True
+  collate_fn:
+    type: BatchImageCollateFuncion

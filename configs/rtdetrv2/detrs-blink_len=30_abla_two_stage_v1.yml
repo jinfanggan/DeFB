@@ -1,0 +1,13 @@
+__include__: [
+  '../dataset/mpeblink_len=30_abla_v1_two_stage.yml',
+  '../runtime.yml',
+  './include/dataloader_len=10.yml',
+  './include/optimizer.yml',
+  './include/rtdetrv2_r50vd_abla_two_stage_train.yml',
+]
+
+output_dir: ./output/rtdetrv2_r50vd_6x_coco_len=30_mpeblinkv1_abla_two_stage
+
+last_epoch: 0
+
+epoches: 3
