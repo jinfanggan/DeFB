@@ -22,9 +22,9 @@
   </p>
   <h3 align="center">AAAI 2026</h3>
   <h3 align="center">
-    Paper (Coming Soon) |
-    <a href="https://zenodo.org/record/7754768">Dataset</a> |
-    <a href="#demo">Demo</a>
+    📄 Paper (Coming Soon) |
+    📦 <a href="https://zenodo.org/record/7754768">Dataset</a> |
+    🎬 <a href="#-demo-video">Demo</a>
   </h3>
 </p>
 
@@ -39,24 +39,24 @@
 This repository contains the official implementation of the AAAI 2026 paper "DeFB: Decomposed Feature Learning for Real-Time Multi-Person Eyeblink Detection in Untrimmed In-the-Wild Videos".
 
 
-## Highlights
+## 🔥 Highlights
 
-- **Rethinking Unified Models:** We identify two critical limitations in existing unified multi-person eyeblink detection models: (1) feature granularity conflict between face localization and eyeblink detection, and (2) unstable face-eye feature learning during joint training.
+- 🔍 **Rethinking Unified Models:** We identify two critical limitations in existing unified multi-person eyeblink detection models: (1) feature granularity conflict between face localization and eyeblink detection, and (2) unstable face-eye feature learning during joint training.
 
-- **Decomposed Feature Learning:** We propose DeFB, which models faces and eyes in granularity-specific feature spaces. This enables fine-grained spatio-temporal modeling for eyeblink detection while maintaining efficiency for face localization.
+- 🧩 **Decomposed Feature Learning:** We propose DeFB, which models faces and eyes in granularity-specific feature spaces. This enables fine-grained spatio-temporal modeling for eyeblink detection while maintaining efficiency for face localization.
 
-- **Asynchronous Training Strategy:** We adopt an asynchronous learning mechanism where eye feature learning refines well-trained coarse face features, significantly improving training stability and convergence.
+- ⚡ **Asynchronous Training Strategy:** We adopt an asynchronous learning mechanism where eye feature learning refines well-trained coarse face features, significantly improving training stability and convergence.
 
-- **State-of-the-Art Performance:** DeFB doubles the performance compared to previous SOTA (Blink-AP: 24.65% vs. 10.11%) while boosting efficiency by nearly 35%.
+- 🏆 **State-of-the-Art Performance:** DeFB doubles the performance compared to previous SOTA (Blink-AP: 24.65% vs. 10.11%) while boosting efficiency by nearly 35%.
 
-- **Plug-and-Play Capability:** DeFB can be integrated as a plug-in to substantially augment the eyeblink detection capabilities of general action detectors.
+- 🔌 **Plug-and-Play Capability:** DeFB can be integrated as a plug-in to substantially augment the eyeblink detection capabilities of general action detectors.
 
 <p align="center">
     <img src="fig/pipeline.png" width="90%"/>
 </p>
 
 
-## Installation
+## 🛠️ Installation
 
 1. Create a new conda environment:
 
@@ -78,7 +78,7 @@ This repository contains the official implementation of the AAAI 2026 paper "DeF
    ```
 
 
-## Data Preparation
+## 📁 Data Preparation
 
 ### MPEblink Dataset
 
@@ -105,15 +105,19 @@ This repository contains the official implementation of the AAAI 2026 paper "DeF
 4. Update the dataset path in `configs/dataset/mpeblink.yml`.
 
 
-## Quick Start
+## 🚀 Quick Start
 
-### Demo Video
+### 🎬 Demo Video
 
 We provide a video introduction of our work:
 
-https://github.com/user-attachments/fig/xxxxxx
+<p align="center">
+  <a href="https://github.com/jinfanggan/DeFB/raw/main/fig/demo.mp4">
+    <img src="https://img.shields.io/badge/▶️_Watch_Demo_Video-blue?style=for-the-badge&logo=github" alt="Watch Demo Video"/>
+  </a>
+</p>
 
-### Full Training & Evaluation Pipeline
+### 🏃 Full Training & Evaluation Pipeline
 
 We provide a complete pipeline script `run_mpeblinkv1.sh` that includes all stages:
 
@@ -123,7 +127,8 @@ bash run_mpeblinkv1.sh
 
 The pipeline consists of the following stages:
 
-#### Stage 1: Facial Modeling Training
+<details>
+<summary><b>Stage 1: Facial Modeling Training</b></summary>
 
 ```bash
 # First phase training (blink_len=10)
@@ -139,8 +144,10 @@ torchrun --nproc_per_node=2 tools/train.py \
     --seed=0 \
     -r output/rtdetrv2_r50vd_mpeblink_trainval/checkpoint.pth
 ```
+</details>
 
-#### Stage 2: Inference on Training Set
+<details>
+<summary><b>Stage 2: Inference on Training Set</b></summary>
 
 ```bash
 # Inference on validation set
@@ -151,8 +158,10 @@ python test.py -c configs/rtdetrv2/rtdetrv2_r50vd_mpeblink_trainval_30.yml \
 python infer_trainset.py -c configs/rtdetrv2/rtdetrv2_r50vd_mpeblink_trainval_30.yml \
     -r output/rtdetrv2_r50vd_mpeblink_trainval_30/checkpoint.pth
 ```
+</details>
 
-#### Stage 3: Blink Module Training
+<details>
+<summary><b>Stage 3: Blink Module Training</b></summary>
 
 ```bash
 # Split dataset for blink detection
@@ -162,8 +171,10 @@ python BlinkModel/split_dataset.py
 python BlinkModel/train_blink_detector.py \
     -c configs/BlinkModule/blink_module.yml
 ```
+</details>
 
-#### Stage 4: Evaluation
+<details>
+<summary><b>Stage 4: Evaluation</b></summary>
 
 ```bash
 # Full model testing
@@ -182,33 +193,34 @@ python tools/eval_mpeblink.py \
     --pred output/final_results.json \
     --gt data/mpeblink/annotations/val.json
 ```
+</details>
 
 
-## Results
+## 📊 Results
 
 ### MPEblink Dataset
 
 | Type | Method | Blink-AP | Blink-AP<sub>0.5</sub> | Blink-AP<sub>0.75</sub> | Blink-AP<sub>0.95</sub> | Inst-AP |
-|------|--------|----------|------------------------|-------------------------|-------------------------|---------|
+|------|--------|:--------:|:----------------------:|:-----------------------:|:-----------------------:|:-------:|
 | Multi-stage | BlinkFormer | 4.69 | 19.95 | 0.54 | 0.00 | 56.70 |
 | Unified | InstBlink | 10.11 | 27.19 | 7.16 | 0.62 | 67.89 |
 | **Unified** | **DeFB (Ours)** | **24.65** | **44.17** | **24.62** | **4.40** | **76.07** |
 
-### Inference Speed
+### ⏱️ Inference Speed
 
 | Method | Time per image |
-|--------|----------------|
+|--------|:--------------:|
 | Multi-stage methods | T (=9.3ms) + latency × #faces |
 | InstBlink | 8.9 + D (=2.6ms) |
 | **DeFB (Ours)** | **6.1 + D (=2.6ms)** |
 
 
-## Acknowledgement
+## 🙏 Acknowledgement
 
 This code is built upon [RT-DETRv2](https://github.com/lyuwenyu/RT-DETR) and [InstBlink](https://github.com/wenzhengzeng/MPEblink). We thank the authors for their excellent work.
 
 
-## Citation
+## 📝 Citation
 
 If you find our work useful in your research, please consider citing our paper:
 
@@ -234,14 +246,15 @@ If you use the MPEblink dataset, please also cite:
 ```
 
 
-## License
+## 📜 License
 
 This project is released under the [Apache 2.0 license](LICENSE).
 
 
-## Contact
+## 📧 Contact
 
 For questions and suggestions, please open an issue or contact Jinfang Gan (jinfanggan@hust.edu.cn).
+
 
 ## Contact
 
