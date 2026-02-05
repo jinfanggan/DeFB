@@ -29,7 +29,7 @@
 </p>
 
 <p align="center">
-    <img src="assets/fig1.png" width="80%"/>
+    <img src="fig/fig1.png" width="80%"/>
 </p>
 
 <p align="center">
@@ -52,7 +52,7 @@ This repository contains the official implementation of the AAAI 2026 paper "DeF
 - **Plug-and-Play Capability:** DeFB can be integrated as a plug-in to substantially augment the eyeblink detection capabilities of general action detectors.
 
 <p align="center">
-    <img src="assets/pipeline.png" width="90%"/>
+    <img src="fig/pipeline.png" width="90%"/>
 </p>
 
 
@@ -111,7 +111,7 @@ This repository contains the official implementation of the AAAI 2026 paper "DeF
 
 We provide a video introduction of our work:
 
-https://github.com/user-attachments/assets/xxxxxx
+https://github.com/user-attachments/fig/xxxxxx
 
 ### Full Training & Evaluation Pipeline
 
@@ -238,6 +238,10 @@ If you use the MPEblink dataset, please also cite:
 
 This project is released under the [Apache 2.0 license](LICENSE).
 
+
+## Contact
+
+For questions and suggestions, please open an issue or contact Jinfang Gan (jinfanggan@hust.edu.cn).
 
 ## Contact
 
