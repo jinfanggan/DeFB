@@ -253,4 +253,4 @@ This project is released under the [Apache 2.0 license](LICENSE).
 
 ## 📧 Contact
 
-For questions and suggestions, please open an issue or contact Jinfang Gan (jinfanggan@hust.edu.cn).
+For questions and suggestions, please open an issue or contact Jinfang Gan (jinfangan@hust.edu.cn).
