@@ -1,7 +1,7 @@
 <p align="center">
   <h1 align="center">DeFB: Decomposed Feature Learning for Real-Time Multi-Person Eyeblink Detection in Untrimmed In-the-Wild Videos</h1>
   <p align="center">
-    <a href="https://scholar.google.com/citations?user=xxxxxx">Jinfang Gan</a><sup>1</sup>,
+    Jinfang Gan<sup>1</sup>,
     <a href="https://wenzhengzeng.github.io/">Wenzheng Zeng</a><sup>1,2*</sup>,
     <a href="https://scholar.google.com/citations?user=NeKBuXEAAAAJ">Yang Xiao</a><sup>1†</sup>,
     Xintao Zhang<sup>1</sup>,
@@ -22,14 +22,18 @@
   </p>
   <h3 align="center">AAAI 2026</h3>
   <h3 align="center">
-    <a href="https://arxiv.org/abs/xxxx.xxxxx">Paper</a> |
+    Paper (Coming Soon) |
     <a href="https://zenodo.org/record/7754768">Dataset</a> |
     <a href="#demo">Demo</a>
   </h3>
 </p>
 
 <p align="center">
-    <img src="assets/demo.gif" width="80%"/>
+    <img src="assets/fig1.png" width="80%"/>
+</p>
+
+<p align="center">
+  <b>DeFB achieves a superior accuracy-efficiency balance compared to other SOTA methods.</b>
 </p>
 
 This repository contains the official implementation of the AAAI 2026 paper "DeFB: Decomposed Feature Learning for Real-Time Multi-Person Eyeblink Detection in Untrimmed In-the-Wild Videos".
@@ -48,7 +52,7 @@ This repository contains the official implementation of the AAAI 2026 paper "DeF
 - **Plug-and-Play Capability:** DeFB can be integrated as a plug-in to substantially augment the eyeblink detection capabilities of general action detectors.
 
 <p align="center">
-    <img src="assets/comparison.png" width="60%"/>
+    <img src="assets/pipeline.png" width="90%"/>
 </p>
 
 
@@ -101,22 +105,13 @@ This repository contains the official implementation of the AAAI 2026 paper "DeF
 4. Update the dataset path in `configs/dataset/mpeblink.yml`.
 
 
-## Model Zoo
-
-| Model | Blink-AP | Inst-AP | Speed (FPS) | Download |
-|-------|----------|---------|-------------|----------|
-| DeFB (RT-DETRv2-M) | 24.65 | 76.07 | 164 | [Google Drive](https://drive.google.com/xxx) / [Baidu Drive](https://pan.baidu.com/xxx) |
-
-
 ## Quick Start
 
-### Demo
+### Demo Video
 
-Put your test videos in `demo_video/source_video/` and run:
+We provide a video introduction of our work:
 
-```bash
-python demo.py --video demo_video/source_video/test.mp4 --output demo_video/visual_result/
-```
+https://github.com/user-attachments/assets/xxxxxx
 
 ### Full Training & Evaluation Pipeline
 
@@ -210,7 +205,7 @@ python tools/eval_mpeblink.py \
 
 ## Acknowledgement
 
-This code is built upon [RT-DETRv2](https://github.com/lyuwenyu/RT-DETR), [InstBlink](https://github.com/wenzhengzeng/MPEblink), and [MMDetection](https://github.com/open-mmlab/mmdetection). We thank the authors for their excellent work.
+This code is built upon [RT-DETRv2](https://github.com/lyuwenyu/RT-DETR) and [InstBlink](https://github.com/wenzhengzeng/MPEblink). We thank the authors for their excellent work.
 
 
 ## Citation
