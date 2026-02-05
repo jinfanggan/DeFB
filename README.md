@@ -22,7 +22,7 @@
   </p>
   <h3 align="center">AAAI 2026</h3>
   <h3 align="center">
-    📄 Paper (Coming Soon) |
+    📄 Paper |
     📦 <a href="https://zenodo.org/record/7754768">Dataset</a> |
     🎬 <a href="#-demo-video">Demo</a>
   </h3>
@@ -252,10 +252,5 @@ This project is released under the [Apache 2.0 license](LICENSE).
 
 
 ## 📧 Contact
-
-For questions and suggestions, please open an issue or contact Jinfang Gan (jinfanggan@hust.edu.cn).
-
-
-## Contact
 
 For questions and suggestions, please open an issue or contact Jinfang Gan (jinfanggan@hust.edu.cn).
