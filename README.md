@@ -226,11 +226,13 @@ If you find our work useful in your research, please consider citing:
 
 ```bibtex
 @misc{gan2026defb,
-  title={DeFB: Decomposed Feature Learning for Real-Time Multi-Person Eyeblink Detection in Untrimmed In-the-Wild Videos (AAAI 2026)},
-  author={Gan, Jinfang and Zeng, Wenzheng and Xiao, Yang and Zhang, Xintao and Zheng, Chaoyang and Zhao, Ran and Wang, Ran and Du, Min and Cao, Zhiguo},
-  howpublished={\url{https://github.com/jinfanggan/DeFB}},
-  year={2026}
-}
+    title={DeFB: Decomposed Feature Learning for Real-Time Multi-Person Eyeblink Detection in Untrimmed In-the-Wild Videos},
+    author={Gan, Jinfang and Zeng, Wenzheng and Xiao, Yang and Zhang, Xintao and Zheng, Chaoyang and Zhao, Ran and Wang, Ran
+  and Du, Min and Cao, Zhiguo},
+    howpublished={\url{https://github.com/jinfanggan/DeFB}},
+    note={Accepted at AAAI 2026},
+    year={2026}
+  }
 ```
 
 If you use the MPEblink dataset, please also cite:
