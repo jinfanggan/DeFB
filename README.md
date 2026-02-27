@@ -22,7 +22,7 @@
   </p>
   <h3 align="center">AAAI 2026</h3>
   <h3 align="center">
-    📄 Paper |
+    📄 <a href="paper/Gan_5894.pdf">Paper</a> |
     📦 <a href="https://zenodo.org/record/7754768">Dataset</a> |
     🎬 <a href="#-demo-video">Demo</a>
   </h3>
@@ -222,13 +222,13 @@ This code is built upon [RT-DETRv2](https://github.com/lyuwenyu/RT-DETR) and [In
 
 ## 📝 Citation
 
-If you find our work useful in your research, please consider citing our paper:
+If you find our work useful in your research, please consider citing:
 
 ```bibtex
-@inproceedings{gan2026defb,
-  title={DeFB: Decomposed Feature Learning for Real-Time Multi-Person Eyeblink Detection in Untrimmed In-the-Wild Videos},
+@misc{gan2026defb,
+  title={DeFB: Decomposed Feature Learning for Real-Time Multi-Person Eyeblink Detection in Untrimmed In-the-Wild Videos (AAAI 2026)},
   author={Gan, Jinfang and Zeng, Wenzheng and Xiao, Yang and Zhang, Xintao and Zheng, Chaoyang and Zhao, Ran and Wang, Ran and Du, Min and Cao, Zhiguo},
-  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  howpublished={\url{https://github.com/jinfanggan/DeFB}},
   year={2026}
 }
 ```
@@ -253,4 +253,4 @@ This project is released under the [Apache 2.0 license](LICENSE).
 
 ## 📧 Contact
 
-For questions and suggestions, please open an issue or contact Jinfang Gan (jinfangan@hust.edu.cn).
+For questions and suggestions, please open an issue or contact Jinfang Gan (jinfanggan@hust.edu.cn).
