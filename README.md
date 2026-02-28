@@ -22,9 +22,9 @@
   </p>
   <h3 align="center">AAAI 2026</h3>
   <h3 align="center">
-    📄 <a href="paper/Gan_5894.pdf">Paper</a> |
-    📦 <a href="https://zenodo.org/record/7754768">Dataset</a> |
-    🎬 <a href="#-demo-video">Demo</a>
+     📄 <a href="https://github.com/jinfanggan/DeFB/raw/main/paper/Gan_5894.pdf">Paper</a> |
+    📦 <a href="https://github.com/wenzhengzeng/MPEblink">Dataset</a> |
+    🎬 <a href="https://github.com/jinfanggan/DeFB/raw/main/fig/demo.mp4">Demo Video</a>
   </h3>
 </p>
 
