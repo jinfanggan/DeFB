@@ -132,31 +132,40 @@ The pipeline consists of the following stages:
 
 ```bash
 # First phase training (blink_len=10)
-torchrun --nproc_per_node=2 tools/train.py \
-    -c configs/rtdetrv2/rtdetrv2_r50vd_mpeblink_trainval.yml \
-    --use-amp \
-    --seed=0
+torchrun --master_port=9909 --nproc_per_node=2 tools/train.py \
+    --use-amp --seed=0 \
+    -c configs/rtdetrv2/detrs-blink_len=10_mpeblinkv1.yml \
+    -t rtdetrv2_r50vd_6x_coco_ema.pth
 
-# Second phase training (blink_len=30)
-torchrun --nproc_per_node=2 tools/train.py \
-    -c configs/rtdetrv2/rtdetrv2_r50vd_mpeblink_trainval_30.yml \
-    --use-amp \
-    --seed=0 \
-    -r output/rtdetrv2_r50vd_mpeblink_trainval/checkpoint.pth
+# Second phase training (blink_len=30), loading stage 1 weights
+torchrun --master_port=9909 --nproc_per_node=2 tools/train.py \
+    --use-amp --seed=0 \
+    -c configs/rtdetrv2/detrs-blink_len=30_mpeblinkv1.yml \
+    -t output/rtdetrv2_r50vd_6x_coco_len=10_mpeblinkv1/last.pth
 ```
 </details>
 
 <details>
-<summary><b>Stage 2: Inference on Training Set</b></summary>
+<summary><b>Stage 2: Inference</b></summary>
 
 ```bash
 # Inference on validation set
-python test.py -c configs/rtdetrv2/rtdetrv2_r50vd_mpeblink_trainval_30.yml \
-    -r output/rtdetrv2_r50vd_mpeblink_trainval_30/checkpoint.pth
+python infer_trainset.py \
+    --config configs/rtdetrv2/detrs-blink_len=30_mpeblinkv1.yml \
+    --output mpeblink_v1 \
+    --checkpoint output/rtdetrv2_r50vd_6x_coco_len=30_mpeblinkv1/checkpoint0000.pth \
+    --json $YOUR_DATA_PATH/annotations/val.json \
+    --root $YOUR_DATA_PATH/val_rawframes \
+    --mode val
 
 # Inference on training set for blink module
-python infer_trainset.py -c configs/rtdetrv2/rtdetrv2_r50vd_mpeblink_trainval_30.yml \
-    -r output/rtdetrv2_r50vd_mpeblink_trainval_30/checkpoint.pth
+python infer_trainset.py \
+    --config configs/rtdetrv2/detrs-blink_len=30_mpeblinkv1.yml \
+    --output mpeblink_v1 \
+    --checkpoint output/rtdetrv2_r50vd_6x_coco_len=10_mpeblinkv1/checkpoint0000.pth \
+    --json $YOUR_DATA_PATH/annotations/train.json \
+    --root $YOUR_DATA_PATH/train_rawframes \
+    --mode train
 ```
 </details>
 
@@ -165,35 +174,40 @@ python infer_trainset.py -c configs/rtdetrv2/rtdetrv2_r50vd_mpeblink_trainval_30
 
 ```bash
 # Split dataset for blink detection
-python BlinkModel/split_dataset.py
+python BlinkModel/split_dataset.py --config configs/BlinkModule/full_v1.py
 
 # Train blink detection module
-python BlinkModel/train_blink_detector.py \
-    -c configs/BlinkModule/blink_module.yml
+python BlinkModel/train_blink_detector.py --config configs/BlinkModule/full_v1.py
 ```
 </details>
 
 <details>
-<summary><b>Stage 4: Evaluation</b></summary>
+<summary><b>Stage 4: Testing & Evaluation</b></summary>
 
 ```bash
 # Full model testing
-python BlinkModel/test_eval.py \
-    -c configs/BlinkModule/blink_module.yml \
-    --track_result output/rtdetrv2_r50vd_mpeblink_trainval_30/val_results.json
+python test.py \
+    --track_config configs/rtdetrv2/detrs-blink_len=30_mpeblinkv1.yml \
+    --blink_config configs/BlinkModule/full_v1.py \
+    --output mpeblink_v1 \
+    --checkpoint output/rtdetrv2_r50vd_6x_coco_len=30_mpeblinkv1/checkpoint0000.pth \
+    --json $YOUR_DATA_PATH/annotations/test.json \
+    --root $YOUR_DATA_PATH/test_rawframes \
+    --mode test
 
 # Convert results with threshold
 python tools/instblink_plus_result_convertor_args.py \
-    --input output/blink_results.json \
-    --output output/final_results.json \
+    --json results/test_results/mpeblink_v1.json \
+    --output results/blink_converted_results/mpeblink_v1.json \
     --threshold 0.07
 
 # Evaluate on MPEblink
 python tools/eval_mpeblink.py \
-    --pred output/final_results.json \
-    --gt data/mpeblink/annotations/val.json
+    --gt_json $YOUR_DATA_PATH/annotations/test.json \
+    --pred_json results/blink_converted_results/mpeblink_v1.json
 ```
 </details>
+
 
 
 ## 📊 Results
