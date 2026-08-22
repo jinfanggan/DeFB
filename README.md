@@ -239,14 +239,15 @@ This code is built upon [RT-DETRv2](https://github.com/lyuwenyu/RT-DETR) and [In
 If you find our work useful in your research, please consider citing:
 
 ```bibtex
-@misc{gan2026defb,
-    title={DeFB: Decomposed Feature Learning for Real-Time Multi-Person Eyeblink Detection in Untrimmed In-the-Wild Videos},
-    author={Gan, Jinfang and Zeng, Wenzheng and Xiao, Yang and Zhang, Xintao and Zheng, Chaoyang and Zhao, Ran and Wang, Ran
-  and Du, Min and Cao, Zhiguo},
-    howpublished={\url{https://github.com/jinfanggan/DeFB}},
-    note={Accepted at AAAI 2026},
-    year={2026}
-  }
+@inproceedings{gan2026defb,
+  title={DeFB: Decomposed Feature Learning for Real-Time Multi-Person Eyeblink Detection in Untrimmed In-the-Wild Videos},
+  author={Gan, Jinfang and Zeng, Wenzheng and Xiao, Yang and Zhang, Xintao and Zheng, Chaoyang and Zhao, Ran and Wang, Ran and Du, Min and Cao, Zhiguo},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={40},
+  pages={4076--4084},
+  year={2026},
+  doi={10.1609/aaai.v40i5.37411}
+}
 ```
 
 If you use the MPEblink dataset, please also cite:
